@@ -1,19 +1,9 @@
 const mongoose = require("mongoose")
-const validator = require('validator')
 
-mongoose.connect(process.env.MONGODB_URL, {
+mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
 })
 
 
-// const task1 = new Task({
-//     description: 'Complete the angular course',
-// })
-
-// task1.save().then(()=>{
-//     console.log(task1)
-// }).catch((error)=>{
-//     console.log('Error',error)
-// })

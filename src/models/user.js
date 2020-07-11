@@ -86,12 +86,12 @@ userSchema.statics.findByCredentials = async (email, password) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    throw new Error("Unable to login");
+    throw new Error("No such email ID found, hence unable to login");
   }
   const isMatch = await bcrypt.compare(password, user.password);
 
   if (!isMatch) {
-    throw new Error("Unable to login");
+    throw new Error("Wrong Password");
   }
 
   return user;
@@ -106,7 +106,7 @@ userSchema.pre("save", async function(next) {
   next();
 });
 
-userSchema.pre('remove', async function (next) {
+userSchema.pre('remove', async function(next) {
   const user = this
   await Task.deleteMany({owner: user._id})
   

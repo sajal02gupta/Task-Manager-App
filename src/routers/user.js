@@ -104,11 +104,7 @@ const upload = multer({
   }
 });
 
-router.post(
-  "/users/me/avatar",
-  auth,
-  upload.single("avatar"),
-  async (req, res) => {
+router.post("/users/me/avatar", auth, upload.single("avatar"), async (req, res) => {
     try {
       const buffer = await sharp(req.file.buffer)
         .resize({ width: 250, height: 250 })
